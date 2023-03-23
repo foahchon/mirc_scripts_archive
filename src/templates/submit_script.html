@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<html>
+    <form enctype="multipart/form-data" method="post" action="/submit_script">
+        <h1>Submit a new script</h1><hr>
+        Script name:<br>
+        <input type="text" name="name" size="50" value="{{ name }}"><p>
+        Author:<br>
+        <input type="text" name="author" size="25" value="{{ author }}"><p>
+        Script version:<br>
+        <input type="text" name="version" size="5" value="{{ version }}"><p>
+        Year:<br>
+        <input type="text" name="year" size="5" value="{{ year }}">
+        <p>
+        Description/README:<br>
+        <textarea rows="10" cols="70" name="description">{{ description }}</textarea><p>
+        <p>
+        Submitted by:<br>
+        <input type="text" name="submitter" size="25" value="{{ submitter }}"><p>
+        <input type="file" name="file"><hr>
+        <input type="submit" value="Submit Script"></button>&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear Form">
+    </form>
+
+    {% if invalid_fields %}
+        Missing fields are:<br>
+        <ul>
+            {% for field in invalid_fields %}
+                <li>{{ field }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <p>
+    <a href="{{ url_for('index') }}">Back to Index</a>
+</html>
+
+{% endblock %}

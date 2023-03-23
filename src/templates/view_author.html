@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ author.name }}</h1>
+<b>Scripts:</b><br>
+<ul>
+    {% for script in author.scripts %}
+        <a href="{{ url_for('view_script_version', version_id=script.default_version.id) }}"><li>{{ script.name }}</a></li>
+    {% endfor %}
+</ul>
+<p>
+<a href="{{ url_for('index') }}">Back to Index</a>
+{% endblock %}

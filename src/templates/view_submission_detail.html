@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ submission.name }} {{ submission.version }}</h1>
+<b>Author</b>: {{ submission.author }}</a><br>
+<b>Year</b>: {{ submission.year }}<br>
+<hr>
+<b>Description:</b><br>
+<pre>{{ submission.description or '(No description available)' }}</pre>
+<hr>
+<form method="{{ url_for('approve_submission') }}">
+    <input type="hidden" name="submission_id" value="{{ submission.id }}">
+    <input type="submit" value="Approve Script">
+</form>
+<p>
+<a href="{{ url_for('view_submissions_queue') }}">Back to Queue</a>
+{% endblock %}

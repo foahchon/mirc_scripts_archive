@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ script_version.script.name }} {{ script_version.version_number }}</h1>
+<b>Author</b>: <a href="{{ url_for('view_author', author_id=script_version.script.author.id) }}">{{ script_version.script.author.name }}</a><br>
+<b>Year</b>: {{ script_version.script.year }}<br>
+{% if other_versions is defined and other_versions[0] is defined %}
+    <b>Other Versions:</b><br>
+    <ul>
+        {% for version in other_versions %}
+            <li><a href="{{ url_for('view_script_version', version_id=version.id) }}">{{ version.version_number }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<hr>
+<b>Description:</b><br>
+<pre>{{ script_version.description or '(No description available)' }}</pre>
+<hr>
+Downloads: {{ script_version.script.download_count }}<p>
+<a href="{{ url_for('download_script', version_id=script_version.id) }}">Download</a>&nbsp;&nbsp;<a href="{{ url_for('index') }}">Back to Index</a>
+
+{% endblock %}

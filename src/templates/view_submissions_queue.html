@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+    <center>
+        <table width="30%" cellspacing="2" border="2">
+            <tr>
+                <th>Script Name</th>
+                <th>Year</th>
+                <th>Author</th>
+                <th>Downloads</th>
+                <th>Details</th>
+            </tr>
+            {% for submission in submissions %}
+            <tr>
+                <td>
+                    <center>{{ submission.name }} {{ submission.version }}</center>
+                </td>
+                <td>
+                    <center>{{ submission.year }}</center>
+                </td>
+                <td>
+                    <center>{{ submission.author }}</center>
+                </td>
+                <td>
+                    <center>{{ submission.submitter }}</center>
+                </td>
+                <td>
+                    <center><a href="{{ url_for('view_submission_detail', submission_id=submission.id) }}">View Detail</a></center>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}

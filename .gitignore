@@ -1,0 +1,5 @@
+/venv/
+/uploads/
+.env
+inserter.py
+scripts.csv

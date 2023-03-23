@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if scripts %}
+    <p>
+    <center>
+        <table width="30%" cellspacing="2" border="2">
+            <tr>
+                <th>Script Name</th>
+                <th>Year</th>
+                <th>Author</th>
+                <th>Downloads</th>
+            </tr>
+            {% for script in scripts %}
+                <tr>
+                    <td><center><a href="{{ url_for('view_script_version', version_id=script.default_version.id) }}">{{ script.name }} {{ script.default_version.version_number }}</center></a></td>
+                    <td><center>{{ script.year }}</center></td>
+                    <td><center><a href="{{ url_for('view_author', author_id=script.author.id) }}">{{ script.author.name }}</center></a></td>
+                    <td><center>{{ script.download_count or '0' }}</center></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% else %}
+    <p>No scripts are available.</p>
+{% endif %}
+<hr>
+<center><a href="{{ url_for('submit_script') }}">Submit a new script</a></center>
+
+{% endblock %}
