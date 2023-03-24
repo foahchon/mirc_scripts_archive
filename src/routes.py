@@ -1,5 +1,6 @@
 import datetime
-from flask import render_template, request, send_file
+import os
+from flask import render_template, request, redirect
 from app import app
 import models
 
@@ -59,7 +60,7 @@ def download_script(version_id):
     version.script.download_count += 1
 
     models.db.session.commit()
-    return send_file(version.download_url)
+    return redirect(f"{os.getenv('SCRIPTS_BUCKET_PREFIX')}{version.download_url}")
 
 @app.route('/view_submissions_queue', methods=['GET'])
 def view_submissions_queue():

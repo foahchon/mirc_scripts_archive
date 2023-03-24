@@ -2,4 +2,6 @@
 /uploads/
 .env
 inserter.py
+uploader.py
 scripts.csv
+*.sql
