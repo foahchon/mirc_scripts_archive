@@ -9,7 +9,7 @@
 <b>Description:</b><br>
 <pre>{{ submission.description or '(No description available)' }}</pre>
 <hr>
-<form method="{{ url_for('approve_submission') }}">
+<form method="post" action="{{ url_for('approve_submission', submission_id=submission.id) }}">
     <input type="hidden" name="submission_id" value="{{ submission.id }}">
     <input type="submit" value="Approve Script">
 </form>
